@@ -2,7 +2,7 @@ var canvas = document.createElement('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 canvas.style.position = "absolute";
-canvas.style.zIndex = 10;
+canvas.style.zIndex = Number.MAX_SAFE_INTEGER;
 document.body.appendChild(canvas);
 
 var c = document.querySelector("canvas")
