@@ -12,7 +12,7 @@ var width = window.innerWidth;
 var height = window.innerHeight;
 var rainbow = true;
 
-var interval = setInterval(drawColor, .000000000001);
+var interval = setInterval(drawColor, 100);
 
 function drawColor(){
 
