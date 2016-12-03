@@ -3,6 +3,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 canvas.style.position = "fixed";
 canvas.style.zIndex = 10;
+canvas.style.pointerEvents = "none";
+
 document.body.insertBefore(canvas, document.body.firstChild);
 
 var c = document.querySelector("canvas")
