@@ -1,7 +1,7 @@
 var canvas = document.createElement('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-canvas.style.position = "absolute";
+canvas.style.position = "fixed";
 canvas.style.zIndex = 10;
 document.body.insertBefore(canvas, document.body.firstChild);
 
