@@ -1,88 +1,93 @@
 //NoColor.js
 
+try{
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	var body = document.querySelector("body");
 
-var width = window.innerWidth;
-var height = window.innerHeight;
-var body = document.querySelector("body");
+	var canvas = document.createElement('canvas');
 
-var canvas = document.createElement('canvas');
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
+	canvas.style.position = "fixed";
+	canvas.style.pointerEvents = "none";
+	document.body.insertBefore(canvas, document.body.firstChild);
+	var c = document.querySelector("canvas");
+	var ctx = c.getContext("2d");
 
-canvas.width = width;
-canvas.height = height;
-canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
-canvas.style.position = "fixed";
-canvas.style.pointerEvents = "none";
-document.body.insertBefore(canvas, document.body.firstChild);
+	ctx.fillStyle = "black";
 
+	var i =200;
+	var j = 200;
+	var rainbowBool = true;
+	var pictureBool = false;
+	var pixTaken = [];
+	var running = true;
 
-var c = document.querySelector("canvas");
-var ctx = c.getContext("2d");
+	var repeat =setInterval(fillPixels,100);
+}
+catch(err){}
+try{
+	var repeat2 = setInterval(flip,0.000001);
+}
+catch(err2){}
 
-ctx.fillStyle = "black";
-var i =200;
-var j = 200;
-var rainbowBool = false;
-var blackBool = false;
-var whiteBool = true;
-var blackAndWhiteBool = false;
-var pixTaken = [];
-var repeat = setInterval(fillPixels, .000000001/10);
 
 function fillPixels(){
 	/*fills in random sets of pixels based on screen size*/
-	if(rainbowBool){ 
-		var r = Math.round(255*(Math.random()));
-		var g = Math.round(255*(Math.random()));
-		var b = Math.round(255*(Math.random()));
-		var rgb = [r,g,b];
-		ctx.fillStyle = "rgb(" + rgb.join(",") +")";
-	}
+	if(running){
+		if(rainbowBool){ 
+			var r = Math.round(255*(Math.random()));
+			var g = Math.round(255*(Math.random()));
+			var b = Math.round(255*(Math.random()));
+			var rgb = [r,g,b];
+			ctx.fillStyle = "rgb(" + rgb.join(",") +")";
+		}
+		else if(pictureBool){
+			var p;
+		}
+		var alreadyFilled = false;
+		i = Math.round(Math.random()*width);             // generate a random number between 0 and width
+		j = Math.round(Math.random()*height);             // generate a random number between 0 and height
 
-	else if(blackBool){
-		var rgb = [0,0,0];
-		ctx.fillStyle = "rgb(" + rgb.join(",") +")";
-	}
+		var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
 
-	else if(whiteBool){
-		var rgb = [255,255,255];
-		ctx.fillStyle = "rgb(" + rgb.join(",") +")";
-	}
+		if (pixTaken.includes(currentPix)){
+			alreadyFilled = true;
+		}
 
-	var alreadyFilled = false;
-	i = Math.round(Math.random()*width);             // generate a random number between 0 and width
-	j = Math.round(Math.random()*height);             // generate a random number between 0 and height
-
-	var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
-
-	if (pixTaken.includes(currentPix)){
-		alreadyFilled = true;
-	}
-
-	if (alreadyFilled == false){
+		if (alreadyFilled == false){
+			ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+			pixTaken.push(currentPix);
+			alreadyFilled = false;
+		}
+		
 		ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
-		pixTaken.push(currentPix);
-		alreadyFilled = false;
 	}
 
 }
 
-var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +
-           '<foreignObject width="100%" height="100%">' +
-           '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
-             markup +
-           '</div>' +
-           '</foreignObject>' +
-           '</svg>';
+function flip(){
+    try{document.getElementById("#btn").onclick() = function(){
+		    if(!running){
+		        repeat =setInterval(fillPixels,100); 
+		    }
+		    else{
+		    	clearInterval(repeat);
+		    }
+		    running = !running;
+	    }
+	    document.getElementById("#rainbow_option").onclick() = function(){
+		    rainbowBool = !rainbowBool;
+	    }
+	    document.getElementById("#picture_option").onclick() = function(){
+		    pictureBool = !pictureBool;
+	    }
+    }
+    catch(err){
+    	console.log("we suck");
+    }
+    //Do the changes 
 
-var DOMURL = window.URL || window.webkitURL || window;
-
-var img = new Image();
-var svg = new Blob([data], {type: 'image/svg+xml'});
-var url = DOMURL.createObjectURL(svg);
-
-img.onload = function () {
-  ctx.drawImage(img, 0, 0);
-  DOMURL.revokeObjectURL(url);
 }
-
-img.src = url;
