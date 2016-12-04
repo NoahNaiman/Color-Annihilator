@@ -13,7 +13,7 @@
 		border:2px solid;
 		padding-top: 4px;
 		height:50px;
-		width:100px;
+		width:250px;
 
 	}
 	body
@@ -40,24 +40,46 @@
 <!-- jQuery library -->
 <script src="jquery.js"></script> 
 <script src="jqueryMin.js"> </script>
-
+<script src="NoColor.js"></script>
 
 
 	<body>
 
-
+<script>
+	
+	var main =function(){
+		var r = 0;
+		var p = 0;
+		var off = 0;
+		var bools = [false, true];
+		$('#rainbow_option').click(function(){
+			rainbowBool = bools[r];
+			r = (r+1)%2;
+		}
+		$('#picture_option').click(function(){
+			rainbowBool = bools[p];
+			p = (p+1)%2;
+		}
+		$('#btn').click(function(){
+			stop = bools[off];
+			 off = (i+1)%2;
+		}
+	}
+	$(document).ready(main);				   
+</script>
 
 
 <form action="">
-  <input id="load_option" type="radio" name="load" value="load" onclick="alertMe()"> Annihlate of load
+  <input id="rainbow_option" type="radio" name="load" value="load" onclick="alertMe()"> Rainbow Mode
   <br>
-  <input id="button_option" type="radio" name="load" value="button"> Annihlate on button<br>
+  <input id="picture_option" type="radio" name="load" value="button"> Picture Mode<br>
 
 <form>
 
+
 	
 		<div id="btn">
-			<b>Start annihilating! </b>
+			<b>Stop annihilating! </b>
 		</div>
 	
 	</body>
