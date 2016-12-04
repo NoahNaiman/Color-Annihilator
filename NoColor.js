@@ -27,7 +27,12 @@ try{
 	var repeat =setInterval(fillPixels,100);
 }
 catch(err){}
-var repeat2 = setInterval(flip,0.000001);
+try{
+	var repeat2 = setInterval(flip,0.000001);
+}
+catch(err2){}
+
+
 function fillPixels(){
 	/*fills in random sets of pixels based on screen size*/
 	if(running){
