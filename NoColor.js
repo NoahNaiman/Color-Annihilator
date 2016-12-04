@@ -13,20 +13,20 @@ try{
 	canvas.style.position = "fixed";
 	canvas.style.pointerEvents = "none";
 	document.body.insertBefore(canvas, document.body.firstChild);
-
-}
-catch(err){}
 	var c = document.querySelector("canvas");
 	var ctx = c.getContext("2d");
 
 	ctx.fillStyle = "black";
+
 	var i =200;
 	var j = 200;
 	var rainbowBool = true;
 	var pictureBool = false;
 	var running = true;
 
-var repeat =setInterval(fillPixels,100);
+	var repeat =setInterval(fillPixels,100);
+}
+catch(err){}
 var repeat2 = setInterval(flip,0.000001);
 function fillPixels(){
 	/*fills in random sets of pixels based on screen size*/
