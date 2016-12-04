@@ -54,8 +54,9 @@ function fillPixels(){
 
 }
 
+
 function flip(){
-    document.getElementById("#btn").onclick() = function(){
+    document.getElementById('#iframe').contentWindow.document.getElementById("#btn").onclick() = function(){
 	    if(!running){
 	        repeat =setInterval(fillPixels,100); 
 	    }
@@ -64,10 +65,10 @@ function flip(){
 	    }
 	    running = !running;
     }
-    document.getElementById("#rainbow_option").onclick() = function(){
+    document.getElementById('#iframe').contentWindow.document.getElementById("#rainbow_option").onclick() = function(){
 	    rainbowBool = !rainbowBool;
     }
-    document.getElementById("#picture_option").onclick() = function(){
+    document.getElementById('#iframe').contentWindow.document.getElementById("#picture_option").onclick() = function(){
 	    pictureBool = !pictureBool;
     }
     
