@@ -54,24 +54,26 @@ function fillPixels(){
 
 }
 
-
 function flip(){
-    document.getElementById('#iframe').contentWindow.document.getElementById("#btn").onclick() = function(){
-	    if(!running){
-	        repeat =setInterval(fillPixels,100); 
+    try{document.getElementById("#btn").onclick() = function(){
+		    if(!running){
+		        repeat =setInterval(fillPixels,100); 
+		    }
+		    else{
+		    	clearInterval(repeat);
+		    }
+		    running = !running;
 	    }
-	    else{
-	    	clearInterval(repeat);
+	    document.getElementById("#rainbow_option").onclick() = function(){
+		    rainbowBool = !rainbowBool;
 	    }
-	    running = !running;
+	    document.getElementById("#picture_option").onclick() = function(){
+		    pictureBool = !pictureBool;
+	    }
     }
-    document.getElementById('#iframe').contentWindow.document.getElementById("#rainbow_option").onclick() = function(){
-	    rainbowBool = !rainbowBool;
+    catch(err){
+    	console.log("we suck");
     }
-    document.getElementById('#iframe').contentWindow.document.getElementById("#picture_option").onclick() = function(){
-	    pictureBool = !pictureBool;
-    }
-    
     //Do the changes 
 
 }
