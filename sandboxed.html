@@ -45,40 +45,18 @@
 
 	<body>
 
-<script>
-	
-	var main =function(){
-		var r = 0;
-		var p = 0;
-		var off = 0;
-		var bools = [false, true];
-		$('#rainbow_option').click(function(){
-			rainbowBool = bools[r];
-			r = (r+1)%2;
-		}
-		$('#picture_option').click(function(){
-			rainbowBool = bools[p];
-			p = (p+1)%2;
-		}
-		$('#btn').click(function(){
-			stop = bools[off];
-			 off = (i+1)%2;
-		}
-	}
-	$(document).ready(main);				   
-</script>
 
 
 <form action="">
-  <input id="rainbow_option" type="radio" name="load" value="load" onclick="alertMe()"> Rainbow Mode
+	<input id="rainbow_option" type="radio" name="load" value="button" onclick="flip(rainbow_option)"</script>   > Rainbow Mode
   <br>
-  <input id="picture_option" type="radio" name="load" value="button"> Picture Mode<br>
+	<input id="picture_option" type="radio" name="load" value="button" onclick="flip(picture_option)"> Picture Mode<br>
 
 <form>
 
 
 	
-		<div id="btn">
+		<div id="btn" onclick="flip(running)">
 			<b>Stop annihilating! </b>
 		</div>
 	
