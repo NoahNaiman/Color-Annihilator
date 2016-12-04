@@ -50,7 +50,7 @@ function fillPixels(){
 }
 
 function flip(){
-    getElementbyId("#btn").onclick() = function(){
+    getElementById("#btn").onclick() = function(){
 	    if(!running){
 	        repeat =setInterval(fillPixels,100); 
 	    }
@@ -59,10 +59,10 @@ function flip(){
 	    }
 	    running = !running;
     }
-    getElementbyId("#rainbow_option").onclick() = function(){
+    getElementById("#rainbow_option").onclick() = function(){
 	    rainbowBool = !rainbowBool;
     }
-    getElementbyId("#picture_option").onclick() = function(){
+    getElementById("#picture_option").onclick() = function(){
 	    pictureBool = !pictureBool;
     }
     
