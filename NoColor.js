@@ -22,6 +22,7 @@ try{
 	var j = 200;
 	var rainbowBool = true;
 	var pictureBool = false;
+	var pixTaken = [];
 	var running = true;
 
 	var repeat =setInterval(fillPixels,100);
@@ -46,10 +47,23 @@ function fillPixels(){
 		else if(pictureBool){
 			var p;
 		}
-
-		ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+		var alreadyFilled = false;
 		i = Math.round(Math.random()*width);             // generate a random number between 0 and width
 		j = Math.round(Math.random()*height);             // generate a random number between 0 and height
+
+		var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
+
+		if (pixTaken.includes(currentPix)){
+			alreadyFilled = true;
+		}
+
+		if (alreadyFilled == false){
+			ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+			pixTaken.push(currentPix);
+			alreadyFilled = false;
+		}
+		
+		ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
 	}
 
 }
