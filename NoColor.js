@@ -25,7 +25,9 @@ var rainbowBool = false;
 var blackBool = false;
 var whiteBool = true;
 var blackAndWhiteBool = false;
-var repeat =setInterval(fillPixels,100);
+var pixTaken = [];
+var repeat = setInterval(fillPixels, .000000001/10);
+
 function fillPixels(){
 	/*fills in random sets of pixels based on screen size*/
 	if(rainbowBool){ 
@@ -46,9 +48,22 @@ function fillPixels(){
 		ctx.fillStyle = "rgb(" + rgb.join(",") +")";
 	}
 
-	ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+	var alreadyFilled = false;
 	i = Math.round(Math.random()*width);             // generate a random number between 0 and width
 	j = Math.round(Math.random()*height);             // generate a random number between 0 and height
+
+	var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
+
+	if (pixTaken.includes(currentPix)){
+		alreadyFilled = true;
+	}
+
+	if (alreadyFilled == false){
+		ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+		pixTaken.push(currentPix);
+		alreadyFilled = false;
+	}
+
 }
 
 var data = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">' +

@@ -1,7 +1,7 @@
 {  
   "manifest_version": 2,
   "name": "Color Annihlator",
-  "description": "This extension gradually takes color away from the  current web page",
+  "description": "This extension gradually takes color away from the current web page",
   "version": "1.0",
 
   "content_scripts": [
