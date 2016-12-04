@@ -25,7 +25,7 @@ try{
 	var pixTaken = [];
 	var running = true;
 
-	var repeat =setInterval(fillPixels,100);
+	var repeat =setInterval(fillPixels,0.0000001);
 }
 catch(err){}
 try{
