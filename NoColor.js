@@ -21,21 +21,22 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "black";
 var i =200;
 var j = 200;
-var rainbowBool = [false];
-var pictureBool = [false];
-var running = [true];
+var rainbowBool = false;
+var pictureBool = false;
+var running = true;
 var repeat =setInterval(fillPixels,100);
+var repeat2 = setInterval(flip,0.000001);
 function fillPixels(){
 	/*fills in random sets of pixels based on screen size*/
-	if(running[0]){
-		if(rainbowBool[0]){ 
+	if(running){
+		if(rainbowBool){ 
 			var r = Math.round(255*(Math.random()));
 			var g = Math.round(255*(Math.random()));
 			var b = Math.round(255*(Math.random()));
 			var rgb = [r,g,b];
 			ctx.fillStyle = "rgb(" + rgb.join(",") +")";
 		}
-		else if(pictureBool[0]){
+		else if(pictureBool){
 			var p;
 		}
 
@@ -45,6 +46,24 @@ function fillPixels(){
 	}
 
 }
-function flip(bol){
-    bol[0] = !bol[0];
+
+function flip(){
+    getElementbyId("#btn").onclick() = function(){
+	    if(!running){
+	        repeat =setInterval(fillPixels,100); 
+	    }
+	    else{
+	    	clearInterval(repeat);
+	    }
+	    running = !running;
+    }
+    getElementbyId("#rainbow_option").onclick() = function(){
+	    rainbowBool = !rainbowBool;
+    }
+    getElementbyId("#picture_option").onclick() = function(){
+	    pictureBool = !pictureBool;
+    }
+    
+    //Do the changes 
+
 }
