@@ -1,29 +1,31 @@
 //NoColor.js
 
+try{
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	var body = document.querySelector("body");
 
-var width = window.innerWidth;
-var height = window.innerHeight;
-var body = document.querySelector("body");
+	var canvas = document.createElement('canvas');
 
-var canvas = document.createElement('canvas');
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
+	canvas.style.position = "fixed";
+	canvas.style.pointerEvents = "none";
+	document.body.insertBefore(canvas, document.body.firstChild);
 
-canvas.width = width;
-canvas.height = height;
-canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
-canvas.style.position = "fixed";
-canvas.style.pointerEvents = "none";
-document.body.insertBefore(canvas, document.body.firstChild);
+}
+catch(err){}
+	var c = document.querySelector("canvas");
+	var ctx = c.getContext("2d");
 
+	ctx.fillStyle = "black";
+	var i =200;
+	var j = 200;
+	var rainbowBool = true;
+	var pictureBool = false;
+	var running = true;
 
-var c = document.querySelector("canvas");
-var ctx = c.getContext("2d");
-
-ctx.fillStyle = "black";
-var i =200;
-var j = 200;
-var rainbowBool = false;
-var pictureBool = false;
-var running = true;
 var repeat =setInterval(fillPixels,100);
 var repeat2 = setInterval(flip,0.000001);
 function fillPixels(){
