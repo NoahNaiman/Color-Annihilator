@@ -3,7 +3,7 @@
   "name": "Color Annihlator",
   "description": "This extension gradually takes color away from the current web page",
   "version": "1.0",
-  "content_security_policy": "script-src 'self' 'sha256-yAMSYBzx73/JnK0CAWgXoxDOm3c7c+qsfVHlIlVI1nM='; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'sha256-t+7ks7dHPGCvJBqHwBYbrlQZNYBIE0/waHuciwGdodA='; object-src 'self'",
 
 
   "content_scripts": [
