@@ -1,5 +1,4 @@
 //NoColor.js
-//NoColor.js
 
 
 var width = window.innerWidth;
@@ -19,18 +18,8 @@ var ctx = c.getContext("2d");
 
 ctx.fillStyle = "black";
 
-<<<<<<< HEAD
-	var repeat =setInterval(fillPixels,0.0000001);
-}
-catch(err){}
-try{
-	var repeat2 = setInterval(flip,0.000001);
-}
-catch(err2){}
-=======
 var pixTaken = [];
 var mode = "on"; //initialized in sandboxed.html as well
->>>>>>> 3d67d12c596ee9832ca0af04114ae3f2d071aa7e
 
 getMode(); //opens connection to port. Doesn't matter if port doesn't exist yet
 var i = Math.round(Math.random()*width); //set first location (i,j) of a pixel

@@ -1,6 +1,5 @@
 <html>
 	<style>
-
 	button
 	{
 		text-align: center;
@@ -14,7 +13,6 @@
 		padding-top: 4px;
 		height:50px;
 		width:250px;
-
 	}
 	body
 	{
@@ -29,10 +27,7 @@
 		line-height: 15px;
 		width:300px;
 		height:300px;
-
 	}
-
-
 	</style>
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -52,20 +47,10 @@
 			<button id ="single" type="button"> Single Mode
 			</button>
 
-<<<<<<< HEAD
-<form action="">
-	<input id="rainbow_option" type="radio" name="load" value="button"> Rainbow Mode
-  <br>
-	<input id="picture_option" type="radio" name="load" value="button"> Picture Mode
-	<br>
-
-</form>
-=======
 			<button id="stop" type="button"> <b>Stop annihilating! </b>
 			</button>
 		</form>
 	</body>
->>>>>>> 3d67d12c596ee9832ca0af04114ae3f2d071aa7e
 
 
 	<script language = "Javascript">
@@ -75,7 +60,6 @@
 	  			callback(tabs[0]);
 	  		});
 		}	
-
   		function createPort(tab){
 			var port = chrome.tabs.connect(tab.id,{name: "mode"});
 			
@@ -98,13 +82,9 @@
 			document.getElementById("single").onclick = function(){
 				mode = "single";
 				setMode(port);
-
 			};
-
 		    console.log(mode);
-
 				
-
 		 	
 		}
 		function setMode(port){
