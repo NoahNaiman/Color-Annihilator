@@ -22,7 +22,7 @@ ctx.fillStyle = "black";
 var pixTaken = [];
 var mode = "on"; //initialized in sandboxed.html as well
 
-var portinvl = setInterval(getMode,500); //messageboard is created asynchronously so it might not exist first time this code is run
+getMode(); //opens connection to port. Doesn't matter if port doesn't exist yet
 var i = Math.round(Math.random()*width); //set first location (i,j) of a pixel
 var j = Math.round(Math.random()*width);
 var alreadyFilled = false;
@@ -102,7 +102,7 @@ function getMode(){
 	  	port.onMessage.addListener(function(msg) {
 		    if (msg.newMode){
 		    	mode = msg.newMode;
-		  		console.log("Mesage received: "+mode);
+		  		console.log("Message received: "+mode);
 		    }
 		    else
 			    console.log("error receiving new mode, last mode was: " + mode);
