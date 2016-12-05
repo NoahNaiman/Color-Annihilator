@@ -23,8 +23,8 @@ var pixTaken = [];
 var mode = "on"; //initialized in sandboxed.html as well
 
 var portinvl = setInterval(getMode,500); //messageboard is created asynchronously so it might not exist first time this code is run
-var i = 0; //set first location (i,j) of a pixel
-var j = 0;
+var i = Math.round(Math.random()*width); //set first location (i,j) of a pixel
+var j = Math.round(Math.random()*width);
 var alreadyFilled = false;
 
 var repeat = setInterval(fillPixels,1000);
@@ -84,9 +84,6 @@ function fillPixels(){
 			var b = Math.round(255*(Math.random()));
 			var rgb = [r,g,b];
 			ctx.fillStyle = "rgb(" + rgb.join(",") +")";
-
-			i = Math.round(Math.random()*width);             // generate a random number between 0 and width
-			j = Math.round(Math.random()*height);	
 
 			ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
 
