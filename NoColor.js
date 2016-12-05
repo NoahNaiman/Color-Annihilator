@@ -1,30 +1,25 @@
 //NoColor.js
+//NoColor.js
 
-try{
-	var width = window.innerWidth;
-	var height = window.innerHeight;
-	var body = document.querySelector("body");
 
-	var canvas = document.createElement('canvas');
+var width = window.innerWidth;
+var height = window.innerHeight;
+var body = document.querySelector("body");
 
-	canvas.width = width;
-	canvas.height = height;
-	canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
-	canvas.style.position = "fixed";
-	canvas.style.pointerEvents = "none";
-	document.body.insertBefore(canvas, document.body.firstChild);
-	var c = document.querySelector("canvas");
-	var ctx = c.getContext("2d");
+var canvas = document.createElement('canvas');
 
-	ctx.fillStyle = "black";
+canvas.width = width;
+canvas.height = height;
+canvas.style.zIndex   = Number.MAX_SAFE_INTEGER;
+canvas.style.position = "fixed";
+canvas.style.pointerEvents = "none";
+document.body.insertBefore(canvas, document.body.firstChild);
+var c = document.querySelector("canvas");
+var ctx = c.getContext("2d");
 
-	var i =200;
-	var j = 200;
-	var rainbowBool = true;
-	var pictureBool = false;
-	var pixTaken = [];
-	var running = true;
+ctx.fillStyle = "black";
 
+<<<<<<< HEAD
 	var repeat =setInterval(fillPixels,0.0000001);
 }
 catch(err){}
@@ -32,62 +27,96 @@ try{
 	var repeat2 = setInterval(flip,0.000001);
 }
 catch(err2){}
+=======
+var pixTaken = [];
+var mode = "on"; //initialized in sandboxed.html as well
+>>>>>>> 3d67d12c596ee9832ca0af04114ae3f2d071aa7e
 
+getMode(); //opens connection to port. Doesn't matter if port doesn't exist yet
+var i = Math.round(Math.random()*width); //set first location (i,j) of a pixel
+var j = Math.round(Math.random()*width);
+var alreadyFilled = false;
+
+var repeat = setInterval(fillPixels,1000);
 
 function fillPixels(){
+	console.log(mode);
 	/*fills in random sets of pixels based on screen size*/
-	if(running){
-		if(rainbowBool){ 
+	if(mode !== "off"){ //if stop button is clicked, will stop adding code
+		if(mode === "on"){
+			i = Math.round(Math.random()*width);             // generate a random number between 0 and width
+			j = Math.round(Math.random()*height);
+			ctx.fillStyle = "black";
+			var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
+
+			if (pixTaken.includes(currentPix)){
+				alreadyFilled = true;
+			}
+
+			if (alreadyFilled == false){
+				ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+				pixTaken.push(currentPix);
+				alreadyFilled = false;
+			}
+		}
+
+		else if(mode === "rainbow"){ 
+			//adds random colored pix to screen
 			var r = Math.round(255*(Math.random()));
 			var g = Math.round(255*(Math.random()));
 			var b = Math.round(255*(Math.random()));
 			var rgb = [r,g,b];
 			ctx.fillStyle = "rgb(" + rgb.join(",") +")";
-		}
-		else if(pictureBool){
-			var p;
-		}
-		var alreadyFilled = false;
-		i = Math.round(Math.random()*width);             // generate a random number between 0 and width
-		j = Math.round(Math.random()*height);             // generate a random number between 0 and height
 
-		var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
+			i = Math.round(Math.random()*width);             // generate a random number between 0 and width
+			j = Math.round(Math.random()*height);
+			var currentPix = '(' + i.toString() + ', ' + j.toString() + ')';
 
-		if (pixTaken.includes(currentPix)){
-			alreadyFilled = true;
+			if (pixTaken.includes(currentPix)){
+				alreadyFilled = true;
+			}
+
+			if (alreadyFilled == false){
+				ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+				pixTaken.push(currentPix);
+				alreadyFilled = false;
+			}
 		}
 
-		if (alreadyFilled == false){
+		else if(mode === "picture"){
+			//will add a picture a pixel at a time
+		}
+
+		else if(mode === "single"){
+			//takes a single pixel set and changes its color
+			var r = Math.round(255*(Math.random()));
+			var g = Math.round(255*(Math.random()));
+			var b = Math.round(255*(Math.random()));
+			var rgb = [r,g,b];
+			ctx.fillStyle = "rgb(" + rgb.join(",") +")";
+
 			ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
-			pixTaken.push(currentPix);
-			alreadyFilled = false;
-		}
-		
-		ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
+
+
+		}             // generate a random number between 0 and height
 	}
 
 }
 
-function flip(){
-    try{document.getElementById("#btn").onclick() = function(){
-		    if(!running){
-		        repeat =setInterval(fillPixels,100); 
+function getMode(){
+	/*receives message from port
+	**communicates with sandboxed.html
+	*/
+	chrome.runtime.onConnect.addListener(function(port) {
+	  	console.assert(port.name == "mode");
+	  	port.onMessage.addListener(function(msg) {
+		    if (msg.newMode){
+		    	mode = msg.newMode;
+		  		console.log("Message received: "+mode);
 		    }
-		    else{
-		    	clearInterval(repeat);
-		    }
-		    running = !running;
-	    }
-	    document.getElementById("#rainbow_option").onclick() = function(){
-		    rainbowBool = !rainbowBool;
-	    }
-	    document.getElementById("#picture_option").onclick() = function(){
-		    pictureBool = !pictureBool;
-	    }
-    }
-    catch(err){
-    	console.log("we suck");
-    }
-    //Do the changes 
+		    else
+			    console.log("error receiving new mode, last mode was: " + mode);
+	  	});
+	});
 
 }

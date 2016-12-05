@@ -1,7 +1,7 @@
 <html>
 	<style>
 
-	#btn
+	button
 	{
 		text-align: center;
 		background-color: #FF3333;
@@ -38,15 +38,21 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 
 <!-- jQuery library -->
-<script src="jquery.js"></script> 
-<script src="jqueryMin.js"> </script>
-<script src="NoColor.js"></script>
-
+<!--<script src="jquery.js"></script> 
+<script src="jqueryMin.js"> </script>-->
 
 	<body>
+		<form>
+			<button id ="rainbow" type="button"> Rainbow Mode
+			</button>
 
+			<button id ="picture" type="button"> Picture Mode
+			</button>
 
+			<button id ="single" type="button"> Single Mode
+			</button>
 
+<<<<<<< HEAD
 <form action="">
 	<input id="rainbow_option" type="radio" name="load" value="button"> Rainbow Mode
   <br>
@@ -54,14 +60,65 @@
 	<br>
 
 </form>
-
-
-	
-		<div id="btn">
-			<b>Stop annihilating! </b>
-		</div>
-	
+=======
+			<button id="stop" type="button"> <b>Stop annihilating! </b>
+			</button>
+		</form>
 	</body>
+>>>>>>> 3d67d12c596ee9832ca0af04114ae3f2d071aa7e
+
+
+	<script language = "Javascript">
+		function getTab(callback){
+			chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+	  			console.log(tabs[0]);
+	  			callback(tabs[0]);
+	  		});
+		}	
+
+  		function createPort(tab){
+			var port = chrome.tabs.connect(tab.id,{name: "mode"});
+			
+			document.getElementById("stop").onclick = function(){
+				if(mode === "off")
+					mode = "on";
+				else
+					mode = "off";
+				setMode(port);
+				console.log("clikityclik");
+			};
+			document.getElementById("rainbow").onclick = function(){
+				mode = "rainbow"; 
+				setMode(port);
+			};
+			document.getElementById("picture").onclick = function(){
+				mode = "picture";
+				setMode(port);
+			};
+			document.getElementById("single").onclick = function(){
+				mode = "single";
+				setMode(port);
+
+			};
+
+		    console.log(mode);
+
+				
+
+		 	
+		}
+		function setMode(port){
+			/*sends message to port*/
+			if(port)
+				port.postMessage({newMode: mode});
+			else{
+				console.log("error: port not created");
+			}
+		}
+		var mode = "on"; //mode is preset to on in content.js
+		getTab(createPort);
+	
+  </script>
 
 
 </html>
