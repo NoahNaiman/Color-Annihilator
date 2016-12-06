@@ -26,11 +26,12 @@ var i = Math.round(Math.random()*width); //set first location (i,j) of a pixel
 var j = Math.round(Math.random()*width);
 var alreadyFilled = false;
 
-var repeat = setInterval(fillPixels,1000);
+var repeat = setInterval(fillPixels, 0.000000000000000000001);
 
 function fillPixels(){
 	console.log(mode);
 	/*fills in random sets of pixels based on screen size*/
+
 	if(mode !== "off"){ //if stop button is clicked, will stop adding code
 		if(mode === "on"){
 			i = Math.round(Math.random()*width);             // generate a random number between 0 and width
@@ -45,8 +46,9 @@ function fillPixels(){
 			if (alreadyFilled == false){
 				ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
 				pixTaken.push(currentPix);
-				alreadyFilled = false;
 			}
+
+			alreadyFilled = false;
 		}
 
 		else if(mode === "rainbow"){ 
@@ -68,8 +70,9 @@ function fillPixels(){
 			if (alreadyFilled == false){
 				ctx.fillRect(i,j,Math.round(width/500),Math.round(height/500));
 				pixTaken.push(currentPix);
-				alreadyFilled = false;
 			}
+
+			alreadyFilled = false;
 		}
 
 		else if(mode === "picture"){
