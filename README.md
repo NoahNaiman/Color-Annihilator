@@ -1,2 +1,2 @@
 # Color-Annihilator
-A Google Chrome Plugin which slowly takes away all color from a webpage
+A Google Chrome Plugin which slowly changes all color from a webpage by placing pixels over it.
