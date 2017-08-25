@@ -1,0 +1,25 @@
+{  
+  "manifest_version": 2,
+  "name": "Color Annihlator",
+  "description": "This extension gradually takes color away from the  current web page",
+  "version": "1.0",
+  "content_security_policy": "script-src 'self' 'sha256-59gPMQ7G2QoGHCVYRCViTWiQsN6fwzGWGdB7RVxjLiA='; object-src 'self'",
+
+  "content_scripts": [
+    {
+    "matches": ["<all_urls>"],
+    "js": ["NoColor.js"]
+    }
+  ],
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  
+  "permissions": [
+    "tabs"
+  ],
+  "icons": {"16": "skully16.png",
+            "48": "skully48.png",
+            "128": "skully128.png" }
+}
